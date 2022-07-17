@@ -1,6 +1,6 @@
-package com.dsalgo.algo.queue;
+package com.dsalgo.ds.queue;
 
-import com.dsalgo.algo.stacks.ArrayStack;
+import com.dsalgo.ds.stacks.ArrayStack;
 import com.dsalgo.exceptions.CustomException;
 
 public class QueueWith2Stacks implements Queue {

@@ -1,4 +1,4 @@
-package com.dsalgo.algo.queue;
+package com.dsalgo.ds.queue;
 
 import com.dsalgo.exceptions.CustomException;
 

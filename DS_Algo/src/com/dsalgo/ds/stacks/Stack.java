@@ -1,4 +1,4 @@
-package com.dsalgo.algo.stacks;
+package com.dsalgo.ds.stacks;
 
 public interface Stack {
 
