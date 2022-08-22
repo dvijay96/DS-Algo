@@ -47,16 +47,27 @@ public class ArrayQueue implements Queue {
 
 	@Override
 	public void display() {
+		String res = "";
 		int front = 0;
 		while (front <= rear) {
-			System.out.print(arr[front++] + " ");
+			res = res + arr[front++] + " ";
 		}
-		System.out.println();
+		System.out.println(res);
 	}
 
 	@Override
 	public boolean isEmpty() {
 		return rear == -1;
+	}
+
+	@Override
+	public String toString() {
+		String res = "";
+		int front = 0;
+		while (front <= rear) {
+			res = res + arr[front++] + " ";
+		}
+		return res;
 	}
 
 	public static void main(String[] args) {

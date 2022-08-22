@@ -1,6 +1,7 @@
 package com.dsalgo;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class App {
@@ -15,6 +16,10 @@ public class App {
 				count++;
 		}
 		System.out.println(count);
+		
+		List<Integer> list=new LinkedList<>();
+		list.add(0, 2);
+		System.out.println(list);
 	}
 
 	public static void approach1() {

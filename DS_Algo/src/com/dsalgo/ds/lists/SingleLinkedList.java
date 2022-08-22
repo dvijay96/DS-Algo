@@ -1,12 +1,16 @@
 package com.dsalgo.ds.lists;
 
+import java.util.LinkedHashMap;
+
+import com.dsalgo.exceptions.CustomException;
+
 /**
  * Implementation of Single LinkedList in java
  * 
  * @author dvijay
  *
  */
-public class SingleLinkedList {
+public class SingleLinkedList implements List {
 
 	/**
 	 * head of the linked list
@@ -17,30 +21,35 @@ public class SingleLinkedList {
 	 * 
 	 * Node of the LinkedList
 	 */
-	private class Node {
-		int data;
-		Node next;
+	public class Node {
+		private int data;
+		private Node next;
 
-		Node(int data) {
+		public Node(int data) {
 			this.data = data;
 			next = null;
 		}
+
+		public int getData() {
+			return data;
+		}
+
+		public Node getNext() {
+			return next;
+		}
+
 	}
 
 	public static void main(String[] args) {
 		SingleLinkedList list1 = new SingleLinkedList();
-		for (int i = 1; i <= 10; i++)
+		for (int i = 1; i <= 5; i++)
 			list1.addLast(i);
 
 		System.out.println(list1);
 
-		list1.insertAt(20, 0);
-		System.out.println(list1);
-		list1.insertAt(20, list1.size());
-		System.out.println(list1);
+		list1.createLoop(3);
+		list1.detectAndCountLoop();
 
-		list1.insertAt(50, 1);
-		System.out.println(list1);
 	}
 
 	/**
@@ -122,6 +131,8 @@ public class SingleLinkedList {
 	 * @param val
 	 */
 	public void delete(int val) {
+		if (head == null)
+			throw new CustomException("List is empty!!!");
 		Node temp = head;
 		Node prev = head;
 		if (temp.data == val) {
@@ -241,8 +252,44 @@ public class SingleLinkedList {
 		return getList();
 	}
 
-//	public void sortList() {
-//
-//	}
+	private void createLoop(int atPos) {
+		atPos = atPos % size();
+		if (head == null)
+			System.out.println("List is empty!!!");
+		Node temp = head;
 
+		if (temp.next != null) {
+			int i = -1;
+			Node loopNode = null;
+			while (temp.getNext() != null) {
+				i++;
+				if (i == atPos)
+					loopNode = temp;
+				temp = temp.next;
+			}
+			temp.next = loopNode;
+		}
+	}
+
+	public void detectAndCountLoop() {
+		LinkedHashMap<Node, Integer> map = new LinkedHashMap<>();
+
+		int pos = 0;
+		boolean loopExists = false;
+		Node temp = head;
+		while (temp != null) {
+			if (map.containsKey(temp)) {
+				loopExists = true;
+				pos = map.get(temp);
+				break;
+			}
+			map.put(temp, ++pos);
+			temp = temp.next;
+		}
+
+		if (loopExists) {
+			System.out.println("Loop exists");
+			System.out.println("Length of loop = " + (map.size() - pos + 1));
+		}
+	}
 }
