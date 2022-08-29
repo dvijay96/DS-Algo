@@ -6,14 +6,14 @@ public class QuickSort {
 
 	public static void main(String[] args) {
 
-		int n = 10;
+		int n = 5;
 
 		int[] arr = new int[n];
 
 		for (int j = 0; j < arr.length; j++) {
 			arr[j] = (int) (Math.random() * (100 - 1) + 1);
 		}
-
+		System.out.println(Arrays.toString(arr));
 		quickSortMid(arr, 0, n - 1);
 
 		boolean isSorted = true;
