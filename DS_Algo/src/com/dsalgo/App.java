@@ -1,13 +1,47 @@
 package com.dsalgo;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 public class App {
 
 	public static void main(String[] args) {
-		String s = "Hello World i";
+
+		System.out.println(log(81234, 10) + 1);
+		System.out.println(reverse(-121));
+		System.out.println(gcd(5, 10));
+	}
+
+	static int gcd(int a, int b) {
+		if (b == 0)
+			return a;
+		return gcd(b, a % b);
+	}
+
+	static int reverse(int n) {
+		int rev = 0;
+		while (n != 0) {
+			int digit = n % 10;
+			rev = digit + (rev * 10);
+			n = n / 10;
+		}
+		return rev;
+	}
+
+	static int log(int n, int base) {
+		int ans = 0;
+		int temp = 1;
+		while (true) {
+			temp *= base;
+			if (temp > n)
+				break;
+			ans++;
+		}
+		return ans;
+	}
+
+	public static void countLastWordLength() {
+		String s = "Hello World iam";
 		int count = 0;
 		for (int i = 0; i < s.length(); i++) {
 			if (s.charAt(i) == ' ')
@@ -16,10 +50,6 @@ public class App {
 				count++;
 		}
 		System.out.println(count);
-		
-		List<Integer> list=new LinkedList<>();
-		list.add(0, 2);
-		System.out.println(list);
 	}
 
 	public static void approach1() {

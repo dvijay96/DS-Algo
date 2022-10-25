@@ -9,6 +9,8 @@ public class StableCountSort {
 
 	public static void main(String[] args) {
 		stableCountSortExample();
+		System.out.println();
+		stableCountSortExampleDesc();
 	}
 
 	public static void stableCountSortExample() {
@@ -51,5 +53,44 @@ public class StableCountSort {
 		for (int i = 0; i < arr.length; i++) {
 			arr[i] = output[i];
 		}
+	}
+
+	public static void stableCountSortExampleDesc() {
+		System.out.println("Stable desc count sort!!!");
+		Student[] arr = Utility.generateInput();
+
+		System.out.println("Before -> " + Arrays.toString(arr));
+		stableCountSortDesc(arr);
+		System.out.println("After -> " + Arrays.toString(arr));
+	}
+
+	private static void stableCountSortDesc(Student[] arr) {
+
+		int max = arr[0].age;
+
+		for (int i = 1; i < arr.length; i++) {
+			if (arr[i].age > max)
+				max = arr[i].age;
+		}
+
+		int[] countArr = new int[max + 1];
+
+		for (Student s : arr) {
+			countArr[max - s.age]++;
+		}
+
+		for (int i = 1; i < countArr.length; i++) {
+			countArr[i] += countArr[i - 1];
+		}
+
+		Student[] output = new Student[arr.length];
+
+		for (Student s : arr) {
+			countArr[max - s.age]--;
+			output[countArr[max - s.age]] = s;
+		}
+
+		for (int i = 0; i < arr.length; i++)
+			arr[i] = output[i];
 	}
 }

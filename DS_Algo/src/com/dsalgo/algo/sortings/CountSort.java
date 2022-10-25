@@ -6,9 +6,9 @@ public class CountSort {
 
 	public static void main(String[] args) {
 
-		int[] arr = { 2, 1, 0, 0, -1 };
+		int[] arr = { 4, 6, 5, 3 };
 
-		sortMix(arr);
+		sortDesc(arr);
 
 		System.out.println(Arrays.toString(arr));
 
@@ -91,4 +91,29 @@ public class CountSort {
 		}
 	}
 
+	static void sortDesc(int[] arr) {
+
+		int max = Arrays.stream(arr).max().getAsInt();
+
+		int[] countArr = new int[max + 1];
+
+		for (int i : arr) {
+			countArr[max - i]++;
+		}
+
+		for (int i = 1; i < countArr.length; i++) {
+			countArr[i] += countArr[i - 1];
+		}
+
+		int[] output = new int[arr.length];
+
+		for (int i : arr) {
+			countArr[max - i]--;
+			output[countArr[max - i]] = i;
+		}
+
+		for (int i = 0; i < arr.length; i++) {
+			arr[i] = output[i];
+		}
+	}
 }
